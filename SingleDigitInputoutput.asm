@@ -1,0 +1,35 @@
+;how to take input
+;sum of value
+;how to print 
+;single digit output
+
+.MODEL SMALL
+.STACK 100H
+.CODE
+
+MAIN PROC
+    
+    MOV AH,1 ;FOR INPUT CONSOLE
+    INT 21H  ;INPUT CONSOLE CALL
+    MOV BL,AL ;INPUT VALUE SAVED IN BL REG
+    
+    
+    MOV AH,1 ; FOR ANOTHER INPUT 
+    INT 21H
+    MOV CL,AL ;NORMALLY INPUT VALUE ARE STORE IN AL REGISITER
+    
+    
+    ADD BL,AL  ; ADD TWO NUMBER AND SAVED IN BL REG
+    
+    MOV DL, BL ;FOR OUTPUT WE NEED DL REG SO WE MOVED OUR RESULT IN DL REG 
+    SUB DL,30H
+    
+    MOV AH,2  ;FOR OUTPUT CONSOLE
+    INT 21H   ;CONSOLE CALL
+    
+   exit: 
+    MOV AH, 4CH ;
+    INT 21H 
+    ENDP ;END PROCEDURE
+       
+END MAIN ;END CODE

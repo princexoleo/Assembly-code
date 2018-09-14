@@ -1,0 +1,75 @@
+;TAKE INPUT FROM USER
+;PRINT SUM
+;PRINT SUB
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+ A DB ?
+ B DB ?
+
+.CODE
+
+ MAIN PROC
+    MOV AX, @DATA ;LOAD DATA
+    MOV DS,AX
+    
+    ;INPUT A
+    MOV AH,1
+    INT 21H
+    
+    MOV A,AL ;INPUT VALUE MOVE TO VARIABLE A
+    SUB A,48 ;A=A-48
+    
+    ;INPUT B
+    MOV AH,1
+    INT 21H 
+    
+    MOV B,AL ;INPUT VALUE MOVE TO VARIABLE B
+    SUB B,48 ;B=B-48
+    
+   ;FOR NEW LINE PRINT
+   MOV AH,2
+   MOV DL, 0AH
+   INT 21H
+   MOV DL, 0DH
+   INT 21H   
+   
+   ;ADDTION
+   MOV BH, A  ;BH=A  MOV VALUE A TO B
+   ADD BH, B  ;BH=BH+B  ADD BH AND B VALUE
+   ADD BH,48  ;BH=BH+48 BH CONVERT TO PRINT
+   
+  
+   ;PRINT SUM RESULT
+   MOV AH,2
+   MOV DL,BH
+   INT 21H  
+   
+   ;FOR NEW LINE PRINT
+   MOV AH,2
+   MOV DL, 0AH
+   INT 21H
+   MOV DL, 0DH
+   INT 21H  
+   
+   ;SUB
+   MOV BH,A
+   SUB BH,B     ;SUB BH=BH-B
+   ADD BH,48    ;ADD BH=BH+48 FOR PRINT 
+   
+   ;PRINT SUBSTRACT RESULT
+   
+   MOV AH, 2
+   MOV DL, BH
+   INT 21H 
+   
+   
+   
+   MOV AH,4CH
+   INT 21H
+   
+   MAIN ENDP  
+ 
+ END MAIN
+   
